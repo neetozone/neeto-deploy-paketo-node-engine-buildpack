@@ -14,10 +14,9 @@ source "${ROOT_DIR}/scripts/.util/tools.sh"
 source "${ROOT_DIR}/scripts/.util/print.sh"
 
 function main {
-  local version output token
-  local -a targets=()
+  local version output token target
   token=""
-  # targets initialized above
+  target=""
 
   while [[ "${#}" != 0 ]]; do
     case "${1}" in
@@ -37,7 +36,7 @@ function main {
         ;;
 
       --target)
-        targets+=("${2}")
+        target="${2}"
         shift 2
         ;;
 
@@ -77,11 +76,7 @@ function main {
   fi
 
   buildpack::archive "${version}" "${buildpack_type}"
-  if [[ ${#targets[@]} -gt 0 ]]; then
-    buildpackage::create "${output}" "${buildpack_type}" "${targets[@]}"
-  else
-    buildpackage::create "${output}" "${buildpack_type}"
-  fi
+  buildpackage::create "${output}" "${buildpack_type}" "${target}"
 }
 
 function usage() {
@@ -95,7 +90,7 @@ OPTIONS
   --version <version>  -v <version>  specifies the version number to use when packaging a buildpack or an extension
   --output <output>    -o <output>   location to output the packaged buildpackage or extension artifact (default: ${ROOT_DIR}/build/buildpackage.cnb)
   --token <token>                    Token used to download assets from GitHub (e.g. jam, pack, etc) (optional)
-  --target <target>                  Target platform (e.g. linux/amd64). Can be specified multiple times for multi-arch (optional)
+  --target <target>                  Target platform (e.g. linux/amd64) (optional)
 USAGE
 }
 
