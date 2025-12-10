@@ -1,6 +1,8 @@
 .DS_Store
 .idea
-.bin
-/bin
+/.bin
 /build
-*.bak
+/bin
+/linux
+/darwin
+/windows
