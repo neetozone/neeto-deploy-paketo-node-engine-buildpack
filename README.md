@@ -2,9 +2,9 @@
 
 ## `docker.io/paketobuildpacks/node-engine`
 
-The Node Engine CNB provides the Node binary distribution.  The buildpack
+The Node Engine CNB provides the Node binary distribution. The buildpack
 installs the Node binary distribution onto the `$PATH` which makes it available
-for subsequent buildpacks and in the final running container.  Examples of
+for subsequent buildpacks and in the final running container. Examples of
 buildpacks that might use the Node binary distribution are the [NPM
 CNB](https://github.com/paketo-buildpacks/npm) and [Yarn Install
 CNB](https://github.com/paketo-buildpacks/yarn-install)
@@ -13,18 +13,19 @@ CNB](https://github.com/paketo-buildpacks/yarn-install)
 
 node-engine will include Node.js versions which are supported as `LTS` in the
 community as well as the active `current` release. When a Node.js version goes
-End of Life (EOL) in the community it may be removed from node-engine
-any time after that.
+End of Life (EOL) in the community it may be removed from node-engine any time
+after that.
 
 For more information on what versions are `LTS` and `current` refer to Node.js
 projects [Release Schedule](https://github.com/nodejs/release#release-schedule).
 
 ## Integration
 
-The Node Engine CNB provides `node` and `npm` as dependencies. Downstream buildpacks, like
-[Yarn Install CNB](https://github.com/paketo-buildpacks/yarn-install) or
-[NPM CNB](https://github.com/paketo-buildpacks/npm), can require the `node` dependency
-by generating a [Build Plan
+The Node Engine CNB provides `node` and `npm` as dependencies. Downstream
+buildpacks, like [Yarn Install
+CNB](https://github.com/paketo-buildpacks/yarn-install) or [NPM
+CNB](https://github.com/paketo-buildpacks/npm), can require the `node`
+dependency by generating a [Build Plan
 TOML](https://github.com/buildpacks/spec/blob/master/buildpack.md#build-plan-toml)
 file that looks like the following:
 
@@ -60,7 +61,8 @@ file that looks like the following:
     launch = true
 ```
 
-Or they can require both `node` and `npm` using a Build Plan that looks like the following:
+Or they can require both `node` and `npm` using a Build Plan that looks like the
+following:
 
 ```toml
 [[requires]]
@@ -109,11 +111,13 @@ To package this buildpack for consumption:
 ./scripts/package.sh --version <version-number>
 ```
 
-This will build the buildpack for all target architectures specified in `buildpack.toml` (amd64 and arm64 by default) and create a single archive containing binaries for all architectures in the `build/` directory.
+This will build the buildpack for all target architectures specified in
+`buildpack.toml` (amd64 and arm64 by default) and create a single archive
+containing binaries for all architectures in the `build/` directory.
 
 This will create a `buildpackage.cnb` file under the `build` directory which you
-can use to build your app as follows:
-`pack build <app-name> -p <path-to-app> -b build/buildpackage.cnb`
+can use to build your app as follows: `pack build <app-name> -p <path-to-app> -b
+build/buildpackage.cnb`
 
 ## Publishing
 
@@ -133,7 +137,8 @@ aws ecr get-login-password --region us-east-1 | \
 The script will automatically:
 - Read target architectures from `buildpack.toml`
 - Extract the buildpack archive
-- Publish each architecture separately with arch-suffixed tags (e.g., `node-engine:<version>-amd64`, `node-engine:<version>-arm64`)
+- Publish each architecture separately with arch-suffixed tags (e.g.,
+  `node-engine:<version>-amd64`, `node-engine:<version>-arm64`)
 - Create and push a multi-arch manifest list
 
 ## Usage
@@ -143,21 +148,22 @@ The script will automatically:
 ### Specifying a Node version
 
 To specify the version of the Node that is installed, set the `$BP_NODE_VERSION`
-environment variable at build time either directly (ex. `pack build my-app
---env BP_NODE_VERSION=~15`) or through a [`project.toml`
+environment variable at build time either directly (ex. `pack build my-app --env
+BP_NODE_VERSION=~15`) or through a [`project.toml`
 file](https://github.com/buildpacks/spec/blob/main/extensions/project-descriptor.md)
 
 ```shell
 $BP_NODE_VERSION="~15"
 ```
 
-You can also specify a node version via an `.nvmrc` or `.node-version` file, also at the application directory root.
+You can also specify a node version via an `.nvmrc` or `.node-version` file,
+also at the application directory root.
 
 ### Enabling memory optimization
 
 To specify the use of memory optimization, set the `$BP_NODE_OPTIMIZE_MEMORY`
-environment variable at build time either directly (ex. `pack build my-app
---env BP_NODE_OPTIMIZE_MEMORY=true`) or through a [`project.toml`
+environment variable at build time either directly (ex. `pack build my-app --env
+BP_NODE_OPTIMIZE_MEMORY=true`) or through a [`project.toml`
 file](https://github.com/buildpacks/spec/blob/main/extensions/project-descriptor.md)
 
 ```shell
@@ -175,14 +181,17 @@ This could be useful if your app is a part of a monorepo.
 
 ### Enabling Inspector for Remote Debugging
 
-To enable the Inspector set the `BPL_DEBUG_ENABLED` environment variable at launch time. Optionally, you can specify the `BPL_DEBUG_PORT` environment variable to use a specific port.
+To enable the Inspector set the `BPL_DEBUG_ENABLED` environment variable at
+launch time. Optionally, you can specify the `BPL_DEBUG_PORT` environment
+variable to use a specific port.
 
 ```shell
 $BPL_DEBUG_ENABLED="true"
 $BPL_DEBUG_PORT="9009"
 ```
 
-For more information on debugging, see [Official Documentation](https://nodejs.org/en/docs/guides/debugging-getting-started)
+For more information on debugging, see [Official
+Documentation](https://nodejs.org/en/docs/guides/debugging-getting-started)
 
 ## Run Tests
 
