@@ -37,11 +37,15 @@ declare -a NODE_BINARIES=(
   "https://nodejs.org/dist/v22.21.0/node-v22.21.0-linux-arm64.tar.xz"
   "https://nodejs.org/dist/v22.21.1/node-v22.21.1-linux-x64.tar.xz"
   "https://nodejs.org/dist/v22.21.1/node-v22.21.1-linux-arm64.tar.xz"
+  "https://nodejs.org/dist/v22.23.4/node-v22.23.4-linux-x64.tar.xz"
+  "https://nodejs.org/dist/v22.23.4/node-v22.23.4-linux-arm64.tar.xz"
   # Node.js 24.x
   "https://nodejs.org/dist/v24.11.0/node-v24.11.0-linux-x64.tar.xz"
   "https://nodejs.org/dist/v24.11.0/node-v24.11.0-linux-arm64.tar.xz"
   "https://nodejs.org/dist/v24.11.1/node-v24.11.1-linux-x64.tar.xz"
   "https://nodejs.org/dist/v24.11.1/node-v24.11.1-linux-arm64.tar.xz"
+  "https://nodejs.org/dist/v24.22.1/node-v24.22.1-linux-x64.tar.xz"
+  "https://nodejs.org/dist/v24.22.1/node-v24.22.1-linux-arm64.tar.xz"
 )
 
 # Download and upload each binary
