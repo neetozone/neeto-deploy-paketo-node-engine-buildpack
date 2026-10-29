@@ -14,5 +14,6 @@ func TestUnitNode(t *testing.T) {
 	suite("Detect", testDetect)
 	suite("NvmrcParser", testNvmrcParser)
 	suite("NodeVersionParser", testNodeVersionParser)
+	suite("BuildpackTOML", testBuildpackTOML)
 	suite.Run(t)
 }
